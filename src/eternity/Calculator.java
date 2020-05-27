@@ -52,7 +52,6 @@ public class Calculator {
 		return x;
 	}
 
-	// all
 	public static double mean_absolute_deviation(ArrayList<Double> x) {
 		return x.get(0);
 	}
@@ -65,60 +64,34 @@ public class Calculator {
 		std_dev = Calculator.square_root(variance);
 		return std_dev;
 	}
-	
-	public static double power(double x, int y) {
-		double res = 1;
-		for (int i = 0; i < y; i++) {
-			res = res * x;
-		}
-		return res;
-	}
+
+///////////////////////////////////////////////////////////////////////////////
+	// Helper functions
+///////////////////////////////////////////////////////////////////////////////
 	
 	public static double absolute_value(double x) {
 		if (x < 0) {
 			x *= -1;
 		}
+
 		return x;
 	}
 	
-	// Helper functions
 	public static double square_root(double x) {
-	    double approx = 0;
-	    double temp = x/2;
-
-	    while (x >= 0.0) {
-	        approx = temp - (temp * temp - x) / (2 * temp);
-
-	        if (Calculator.absolute_value(temp - approx)< .0001) {
-	            return approx;
-	        }
-	        else {
-	        	temp = approx;
-	        }
-	    } 
-
-	    return x;
-//		if (x < 0) {
-//			throw new SquareRootOfNegativeException();
-//		}
-//		double approx = 1;
-//		for (int i = 0; i < 10; i++) {
-//			approx = (Calculator.power(approx, (int)x) + x) / (x * approx);
-//		}
-//
-//		return approx;
-	}
-
-	public static int fibonacci(int x) {
-		int t1 = 0, t2 = 1;
-
-		for (int i = 1; i <= x; ++i) {
-
-			int sum = t1 + t2;
-			t1 = t2;
-			t2 = sum;
+		if (x < 0) {
+			throw new SquareRootOfNegativeException();
 		}
-		return t2;
+
+	    double approx = 0;
+	    for (double i = x/2; x >= 0; i = approx) {
+	    	approx = i - (i * i - x) / (i * 2);
+	    	if (Calculator.absolute_value(i - approx) < 0.0001) {
+	    		break;
+	    	}
+	    	i = approx;
+	    }
+
+	    return approx;
 	}
 
 	public static double mean(ArrayList<Double> numbers) {
