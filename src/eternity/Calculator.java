@@ -9,7 +9,21 @@ public class Calculator {
 
 	// pick one
 	public static double sin(double x) {
-		return x;
+		theta = theta*0.017453292519943295;
+        int power = 1;
+        double sinx = 0;
+        for (int i=1; i<=10; i++) {
+            double term=0;
+            if(i%2==0) {
+                term=-(x_to_the_y(theta, power)/factorial(power));
+            }
+            else {
+                term=(x_to_the_y(theta, power)/factorial(power));
+            }
+            sinx=sinx+term;
+            power=power+2;
+        }
+        return sinx;
 	}
 
 	public static double cos(double x) {
@@ -111,5 +125,13 @@ public class Calculator {
 
 		return Calculator.mean(numbers);
 	}
+	
+	//Does not use decimals
+	public static int factorial(int x) {
+        if (x==0) {
+            return 1;
+        }
+        return x*factorial(x-1);
+    }
 
 }
