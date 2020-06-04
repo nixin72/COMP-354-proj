@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import eternity.Calculator;
+import eternity.Tests.TestUtils;
 import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
@@ -16,25 +17,25 @@ class TestCalculator {
 ///////////////////////////////////////////////////////////////////////////////
 	@Test
 	public void mean_single_int() {
-		var list = makeArrayList(1);
+		var list = TestUtils.makeArrayList(1);
 		assertEquals(Calculator.mean(list), 1);
 	}
 
 	@Test
 	public void mean_mulitiple_ints() {
-		var list = makeArrayList(1,2,3,4,5);
+		var list = TestUtils.makeArrayList(1,2,3,4,5);
 		assertEquals(Calculator.mean(list), 3);
 	}
 	
 	@Test
 	public void mean_single_double() {
-		var list = makeArrayList(1.5);
+		var list = TestUtils.makeArrayList(1.5);
 		assertEquals(Calculator.mean(list), 1.5);
 	}
 
 	@Test
 	public void mean_multiple_doubles() {
-		var list = makeArrayList(1.5, 2.5, 3.5, 4.5, 5.5);
+		var list = TestUtils.makeArrayList(1.5, 2.5, 3.5, 4.5, 5.5);
 		assertEquals(Calculator.mean(list), 3.5);
 	}
 	
@@ -43,28 +44,28 @@ class TestCalculator {
 ///////////////////////////////////////////////////////////////////////////////
 	@Test
 	public void variance_single_int() {
-		var list = makeArrayList(1);
+		var list = TestUtils.makeArrayList(1);
 		var mean = Calculator.mean(list);
 		assertEquals(Calculator.variance(mean, list), 0);
 	}
 
 	@Test
 	public void variance_mulitiple_ints() {
-		var list = makeArrayList(1,2,3,4,5);
+		var list = TestUtils.makeArrayList(1,2,3,4,5);
 		var mean = Calculator.mean(list);
 		assertEquals(Calculator.variance(mean, list), 2);
 	}
 	
 	@Test
 	public void variance_single_double() {
-		var list = makeArrayList(1.5);
+		var list = TestUtils.makeArrayList(1.5);
 		var mean = Calculator.mean(list);
 		assertEquals(Calculator.variance(mean, list), 0);
 	}
 
 	@Test
 	public void variance_multiple_doubles() {
-		var list = makeArrayList(1.5, 2.5, 3.5, 4.5, 5.5);
+		var list = TestUtils.makeArrayList(1.5, 2.5, 3.5, 4.5, 5.5);
 		var mean = Calculator.mean(list);
 		assertEquals(Calculator.variance(mean, list), 2);
 	}
@@ -123,31 +124,5 @@ class TestCalculator {
 	@Test
 	public void absolute_value_neg_double() {
 		assertEquals(Calculator.absolute_value(-2.5), 2.5);
-	}
-///////////////////////////////////////////////////////////////////////////////
-	// Helpers
-	/*
-	 * Just helper methods so you don't have to do 
-	 * var list = new ArrayList<Double>();
-	 * list.add(1);
-	 * list.add(2);
-	 * list.add(3);
-	 * ...
-	 * every time you write a test for something that takes a list as input
-	 * */
-	public ArrayList<Double> makeArrayList(int... elements) {
-		var list = new ArrayList<Double>();
-		for (var i = 0; i < elements.length ; i++) {
-			list.add((double)elements[i]);
-		}
-		return list;
-	}
-
-	public ArrayList<Double> makeArrayList(double... elements) {
-		var list = new ArrayList<Double>();
-		for (var i = 0; i < elements.length ; i++) {
-			list.add(elements[i]);
-		}
-		return list;
 	}
 }
