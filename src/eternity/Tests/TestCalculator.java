@@ -129,16 +129,24 @@ class TestCalculator {
 	// 10^x
 ///////////////////////////////////////////////////////////////////////////////
 	@Test
-	public void ten_to_the_x_pos_int() { assertEquals(Calculator.ten_to_the_x(5), 100000); }
+	public void ten_to_the_x_pos_int() {
+		assertEquals(Calculator.ten_to_the_x(5), 100000);
+	}
 
 	@Test
-	public void ten_to_the_x_neg_int() { assertEquals(Calculator.ten_to_the_x(-3), 0.001); }
+	public void ten_to_the_x_neg_int() {
+		assertEquals(Calculator.ten_to_the_x(-3), 0.001);
+	}
 
 	@Test
-	public void ten_to_the_x_pos_double() { assertEquals(Calculator.ten_to_the_x(5.417735), 261658.59194); }
+	public void ten_to_the_x_pos_double() {
+		assertEquals(Calculator.ten_to_the_x(5.417735), 261658.59194);
+	}
 
 	@Test
-	public void ten_to_the_x_neg_double() { assertEquals(Calculator.ten_to_the_x(-2.789123456), 0.00162508673); }
+	public void ten_to_the_x_neg_double() {
+		assertEquals(Calculator.ten_to_the_x(-2.789123456), 0.00162508673);
+	}
 
 ///////////////////////////////////////////////////////////////////////////////
 	// Helpers
