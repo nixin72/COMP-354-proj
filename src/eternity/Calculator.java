@@ -1,6 +1,7 @@
 package eternity;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import eternity.Errors.SquareRootOfNegativeException;
 import eternity.Errors.DivideByZeroException;
@@ -63,29 +64,9 @@ public class Calculator {
 		double meanValue = mean(x);
 
 	    //find difference between array and the mean.
-		ArrayList<Double> differenceArray = diffMean(x, meanValue);
-	    
-	    //the Mad is the mean of the difference of the between the items and the mean.
-		return mean(differenceArray);
+		return diffMean(x, meanValue);		
 	}
 	
-	/**
-	 * Mean Absolute Value "MAD" of a array of Double
-	 * @param x the array
-	 * @return the Double Mean Absolute Value
-	 */
-	public static double mean_absolute_deviation(double[] x) {
-		//find the mean of the array given
-		double meanValue = mean(x);
-	    
-	    //find difference between array and the mean.
-	    double[] differenceArray = diffMean(x, meanValue);
-	    
-	    //the Mad is the mean of the difference of the between the items and the mean.
-	    return mean(differenceArray);
-	}
-
-
 	public static double standard_deviation(ArrayList<Double> x) {
 		double mean, variance, std_dev;
 
@@ -100,34 +81,10 @@ public class Calculator {
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	* Create an array of difference between an array of double and the mean
-	* */
-	private static double[] diffMean(double[] args, double mean){
-		//Create an array to store the difference between each item and the mean.
-		double[] arrayOfDifference = new double[args.length];
-
-		for(int index = 0; index < args.length; index++){
-			//calculate the absolute value of the difference and store it in this new array.
-			arrayOfDifference[index] = abs(args[index] - mean);
-		}
-		//return the array that contains the difference between each number in the array and the mean.
-		return arrayOfDifference;
-	}
-	
-	/**
 	* Create an ArrayList of difference between an array of double and the mean
 	* */
-	private static ArrayList<Double> diffMean(ArrayList<Double> args, double mean){
-		//Create an ArrayList to store the difference between each item and the mean.
-		ArrayList<Double> arrayOfDifference = new ArrayList<Double>();
-
-		// For Each Loop for iterating ArrayList 
-        for (Double i : args) {
-        	arrayOfDifference.add(abs(i - mean));
-        }
-
-		//return the array that contains the difference between each number in the array and the mean.
-		return arrayOfDifference;
+	private static double diffMean(ArrayList<Double> args, double mean){
+		return sum(map(args, x->abs(mean-x))) / args.size();
 	}
 	
 	public static double absolute_value(double x) {
@@ -164,47 +121,45 @@ public class Calculator {
 	}
 	
 	/**
-	* Find the mean of an array of doubles
-	* */
-	public static double mean(double[] args) {
-		//return error if length of array is 0
-		if(args.length == 0)
-			throw new DivideByZeroException();
-		
-		//initiate the total for the sum 
-		double total = 0;
-
-		// iterating over an array 
-		for (double doubleNum : args) { 
-
-			// accessing each element of array 
-			total += doubleNum; 
-		} 
-		//mean is the total value divided by the amount of item in the array
-	    return total/args.length;
-	}
-
+	 * Sum of a list divided by the number of items
+	 * @param numbers the list of numbers to find a mean.
+	 * @return the mean.
+	 */
 	public static double mean(ArrayList<Double> numbers) {
-		
-		if(numbers.size() == 0) {
-			throw new DivideByZeroException();
-		}
-		
-		double sum = 0;
-		for (int i = 0; i < numbers.size() ; i++) {
-			sum += numbers.get(i);
-		}
-
-		return sum / numbers.size();
+		//throw divided by zero exception if no numbers are in the list
+		if(numbers.size() == 0) throw new DivideByZeroException();
+		return sum(map(numbers, x->x)) / numbers.size();
 	}
 
 	public static double variance(double mean, ArrayList<Double> numbers) {
-		for (int i = 0; i < numbers.size(); i++) {
-			double diff = numbers.get(i) - mean;
-			numbers.set(i, diff * diff);
-		}
-
-		return Calculator.mean(numbers);
+		//variance is (mean - x)^2/size of array
+		return sum(map(numbers, x->(mean-x)*(mean-x))) / numbers.size();
 	}
 
+	/**
+	 * Apply a function given by fn to all items in the list numbers.
+	 * @param numbers the list to modify by a function fn.
+	 * @param fn a given function lamda.
+	 * @return
+	 */
+	public static ArrayList<Double> map(ArrayList<Double> numbers, Function<Double,Double> fn) {
+		//for each item in the list apply the function given by the lamda expression (e.i: x-> (mean - x))
+		for (var i = 0; i < numbers.size() ; i++) {
+			numbers.set(i, fn.apply(numbers.get(i)));
+		}
+		return numbers;
+	}
+	
+	/**
+	 * Sum all items in a list.
+	 * @param numbers the list of numbers to sum.
+	 * @return sum total
+	 */
+	public static double sum(ArrayList<Double> numbers) {
+		double ret = 0;
+		for (var i = 0; i < numbers.size() ; i++) {
+			ret += numbers.get(i);
+		}	
+		return ret;
+	}
 }
