@@ -105,9 +105,28 @@ class TestCalculator {
 	// E^x, euler constant
 ///////////////////////////////////////////////////////////////////////////////
 	@Test
-	public void e_to_the_x(){
-		assertEquals(Calculator.exp(0)); // print 0.0
-		assertEquals(Calculator.exp(1)); // print 2.7####
+	public void e_to_the_x_0(){
+		assertEquals(Calculator.exp(0), 1);
+	}
+
+	@Test
+	public void e_to_the_x_pos_int(){
+		assertEquals(Calculator.exp(10), 22026.46579); 
+	}
+
+	@Test
+	public void e_to_the_x_neg_int(){
+		assertEquals(Calculator.exp(-5), 0.006737946);
+	}
+
+	@Test
+	public void e_to_the_x_pos_double(){
+		assertEquals(Calculator.exp(3.5), 33.11545196);
+	}
+
+	@Test
+	public void e_to_the_x_neg_double(){
+		assertEquals(Calculator.exp(-7.3), 0.000675538);
 	}
 
 ///////////////////////////////////////////////////////////////////////////////
