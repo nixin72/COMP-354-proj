@@ -100,7 +100,16 @@ class TestCalculator {
 			assertFalse(false);
 		}
 	}
-	
+
+///////////////////////////////////////////////////////////////////////////////
+	// E^x, euler constant
+///////////////////////////////////////////////////////////////////////////////
+	@Test
+	public void e_to_the_x(){
+		assertEquals(Calculator.exp(0)); // print 0.0
+		assertEquals(Calculator.exp(1)); // print 2.7####
+	}
+
 ///////////////////////////////////////////////////////////////////////////////
 	// Absolute Value
 ///////////////////////////////////////////////////////////////////////////////
@@ -120,6 +129,7 @@ class TestCalculator {
 	
 	}
 
+
 	@Test
 	public void absolute_value_neg_double() {
 		assertEquals(Calculator.absolute_value(-2.5), 2.5);
@@ -135,6 +145,8 @@ class TestCalculator {
 	 * ...
 	 * every time you write a test for something that takes a list as input
 	 * */
+
+
 	public ArrayList<Double> makeArrayList(int... elements) {
 		var list = new ArrayList<Double>();
 		for (var i = 0; i < elements.length ; i++) {
