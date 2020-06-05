@@ -175,10 +175,8 @@ public class Calculator {
 
 	public static boolean CheckEvenOdd(int number){
 		double result = number / 2;
-		if(result == (int)result)
-			return (true); // even number
-		else
-			return (false);  // odd number
+		// true = even, false = odd
+		return result == (int)result;
 	}
 
 }
