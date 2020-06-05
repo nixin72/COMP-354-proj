@@ -41,6 +41,67 @@ public class Calculator {
 	}
 
 	public static double x_to_the_y(double x, double y) {
+		if (x==0){
+			if (y>0){
+				return (0);
+			}
+			else{
+				//undefine
+			}
+
+		}
+		if (x==1){
+			return (1);
+		}
+
+		if( x==-1){
+			if( y != (int)y){
+				return (-1);
+			}
+			else{
+				if(Calculator.CheckEvenOdd((y))){
+					return (1);
+				}else{
+					return (-1);
+				}
+			}
+		}
+
+		if(y==0){
+			return (1);
+		}
+
+		if(y == 1){
+			return (x);
+		}
+
+		if(y<1 && (y== (int) y)){
+			double result = x;
+			while( y-->1){
+				result *= x;
+			}
+
+		}
+
+		if(y>1 && (y== (int) y) ){
+			y *= -1;
+			double result = x;
+			while( y-->1){
+				result *= x;
+			}
+			result = 1 / result ;
+			return (result);
+		}
+
+		if(y<1 && (y!= (int) y)){
+			//TODO decimal power
+
+		}
+
+		if(y>1 && (y!= (int) y) ){
+			//TODO decimal power
+
+		}
 		return x;
 	}
 
@@ -110,6 +171,12 @@ public class Calculator {
 		}
 
 		return Calculator.mean(numbers);
+	}
+
+	public static boolean CheckEvenOdd(int number){
+		double result = number / 2;
+		// true = even, false = odd
+		return result == (int)result;
 	}
 
 }
