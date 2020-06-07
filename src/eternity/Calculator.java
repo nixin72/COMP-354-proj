@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import eternity.Errors.SquareRootOfNegativeException;
 
 public class Calculator {
-  // Functions we have to do
-
   // pick one
   public static double sin(double x) {
     return x;
@@ -25,7 +23,29 @@ public class Calculator {
   }
 
   public static double ten_to_the_x(double x) {
-    return x;
+    final double ln10 = 2.30258509299;
+    final double e = 2.718281828459;
+
+    //TODO implement ln(10)
+    //TODO implement e
+
+    if (x == 0) {
+      return (1);
+    }
+    if (x == 1) {
+      return (10);
+    }
+    if (x == -1){
+      return(0.1);
+    }
+
+    double new_e_exponent = x*ln10;
+    double sum = 1;
+
+    for (int i = 100; i > 0; --i ) {
+      sum = 1 + new_e_exponent * sum / (i);
+    }
+    return sum;
   }
 
   public static double pi_to_the_x(double x) {
@@ -57,11 +77,10 @@ public class Calculator {
   }
 
   public static double standard_deviation(ArrayList<Double> x) {
-    double mean, variance, std_dev;
+    double mean = Calculator.mean(x);
+    double variance = Calculator.variance(mean, x);
+    double std_dev = Calculator.square_root(variance);
 
-    mean = Calculator.mean(x);
-    variance = Calculator.variance(mean, x);
-    std_dev = Calculator.square_root(variance);
     return std_dev;
   }
 
