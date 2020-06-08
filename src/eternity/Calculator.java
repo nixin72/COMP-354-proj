@@ -5,178 +5,134 @@ import java.util.ArrayList;
 import eternity.Errors.SquareRootOfNegativeException;
 
 public class Calculator {
-	// Functions we have to do
 
-	// pick one
-	public static double sin(double x) {
-		return x;
-	}
+  // pick one
+  public static double sin(double x) {
+    return x;
+  }
 
-	public static double cos(double x) {
-		return x;
-	}
+  public static double cos(double x) {
+    return x;
+  }
 
-	public static double sinh(double x) {
-		return x;
-	}
+  public static double sinh(double x) {
+    return x;
+  }
 
-	public static double cosh(double x) {
-		return x;
-	}
+  public static double cosh(double x) {
+    return x;
+  }
 
-	public static double ten_to_the_x(double x) {
-		return x;
-	}
+  public static double ten_to_the_x(double x) {
+    final double ln10 = log_e_x(10);
+    final double e = 2.718281828459;
 
-	public static double pi_to_the_x(double x) {
-		return x;
-	}
+    if (x == 0) {
+      return (1);
+    }
+    if (x == 1) {
+      return (10);
+    }
+    if (x == -1) {
+      return (0.1);
+    }
 
-	public static double e_to_the_x(double x) {
-		return x;
-	}
+    double new_e_exponent = x * ln10;
+    double sum = 1;
 
-	public static double a_to_the_x(double x) {
-		return x;
-	}
+    for (int i = 100; i > 0; --i) {
+      sum = 1 + new_e_exponent * sum / (i);
+    }
+    return sum;
+  }
 
-	public static double x_to_the_y(double x, double y) {
-		if (x==0){
-			if (y>0){
-				return (0);
-			}
-			else{
-				//undefine
-			}
+  public static double pi_to_the_x(double x) {
+    return x;
+  }
 
-		}
-		if (x==1){
-			return (1);
-		}
+  /**
+   * Exponential
+   *
+   * @param x
+   * @return e^x
+   */
+  public static double exp(double x) {
+    // TODO: Replace with our own implementation
+    return Math.exp(x);
+  }
 
-		if( x==-1){
-			if( y != (int)y){
-				return (-1);
-			}
-			else{
-				if(Calculator.CheckEvenOdd((y))){
-					return (1);
-				}else{
-					return (-1);
-				}
-			}
-		}
+  public static double a_to_the_x(double x) {
+    return x;
+  }
 
-		if(y==0){
-			return (1);
-		}
+  public static double x_to_the_y(double x, double y) {
+    return x;
+  }
 
-		if(y == 1){
-			return (x);
-		}
+  public static double log_e_x(double x) {
+    return x;
+  }
 
-		if(y<1 && (y== (int) y)){
-			double result = x;
-			while( y-->1){
-				result *= x;
-			}
+  public static double log_10_x(double x) {
+    return x;
+  }
 
-		}
+  public static double mean_absolute_deviation(ArrayList<Double> x) {
+    return x.get(0);
+  }
 
-		if(y>1 && (y== (int) y) ){
-			y *= -1;
-			double result = x;
-			while( y-->1){
-				result *= x;
-			}
-			result = 1 / result ;
-			return (result);
-		}
+  public static double standard_deviation(ArrayList<Double> x) {
+    double mean = Calculator.mean(x);
+    double variance = Calculator.variance(mean, x);
+    double std_dev = Calculator.square_root(variance);
 
-		if(y<1 && (y!= (int) y)){
-			//TODO decimal power
+    return std_dev;
+  }
 
-		}
+  ///////////////////////////////////////////////////////////////////////////////
+  // Helper functions
+  ///////////////////////////////////////////////////////////////////////////////
 
-		if(y>1 && (y!= (int) y) ){
-			//TODO decimal power
+  public static double absolute_value(double x) {
+    if (x < 0) {
+      x *= -1;
+    }
 
-		}
-		return x;
-	}
+    return x;
+  }
 
-	public static double log_e_x(double x) {
-		return x;
-	}
+  public static double square_root(double x) {
+    if (x < 0) {
+      throw new SquareRootOfNegativeException();
+    }
 
-	public static double log_10_x(double x) {
-		return x;
-	}
+    double approx = 0;
+    for (double i = x / 2; x >= 0; i = approx) {
+      approx = i - (i * i - x) / (i * 2);
+      if (Calculator.absolute_value(i - approx) < 0.0001) {
+        break;
+      }
+      i = approx;
+    }
 
-	public static double mean_absolute_deviation(ArrayList<Double> x) {
-		return x.get(0);
-	}
+    return approx;
+  }
 
-	public static double standard_deviation(ArrayList<Double> x) {
-		double mean, variance, std_dev;
+  public static double mean(ArrayList<Double> numbers) {
+    double sum = 0;
+    for (int i = 0; i < numbers.size(); i++) {
+      sum += numbers.get(i);
+    }
 
-		mean = Calculator.mean(x);
-		variance = Calculator.variance(mean, x);
-		std_dev = Calculator.square_root(variance);
-		return std_dev;
-	}
+    return sum / numbers.size();
+  }
 
-///////////////////////////////////////////////////////////////////////////////
-	// Helper functions
-///////////////////////////////////////////////////////////////////////////////
-	
-	public static double absolute_value(double x) {
-		if (x < 0) {
-			x *= -1;
-		}
+  public static double variance(double mean, ArrayList<Double> numbers) {
+    for (int i = 0; i < numbers.size(); i++) {
+      double diff = numbers.get(i) - mean;
+      numbers.set(i, diff * diff);
+    }
 
-		return x;
-	}
-	
-	public static double square_root(double x) {
-		if (x < 0) {
-			throw new SquareRootOfNegativeException();
-		}
-
-	    double approx = 0;
-	    for (double i = x/2; x >= 0; i = approx) {
-	    	approx = i - (i * i - x) / (i * 2);
-	    	if (Calculator.absolute_value(i - approx) < 0.0001) {
-	    		break;
-	    	}
-	    	i = approx;
-	    }
-
-	    return approx;
-	}
-
-	public static double mean(ArrayList<Double> numbers) {
-		double sum = 0;
-		for (int i = 0; i < numbers.size() ; i++) {
-			sum += numbers.get(i);
-		}
-
-		return sum / numbers.size();
-	}
-
-	public static double variance(double mean, ArrayList<Double> numbers) {
-		for (int i = 0; i < numbers.size(); i++) {
-			double diff = numbers.get(i) - mean;
-			numbers.set(i, diff * diff);
-		}
-
-		return Calculator.mean(numbers);
-	}
-
-	public static boolean CheckEvenOdd(int number){
-		double result = number / 2;
-		// true = even, false = odd
-		return result == (int)result;
-	}
-
+    return Calculator.mean(numbers);
+  }
 }
