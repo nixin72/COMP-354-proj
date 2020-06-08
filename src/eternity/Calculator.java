@@ -69,8 +69,31 @@ public class Calculator {
     return x;
   }
 
+
+  /**
+   * Natural log
+   * Author: Isaac Doré - 40043159
+   *
+   * Leveraging Taylor series of the exp() function.
+   * The function f(y)= exp(y) - x will be zero when ln(x)=y. We can use this with to converge towards the solution.
+   * Computed using Newton's method : x_{n+1} = x_n - f(x_n)/f'(x_{n})
+   * Newton's method gives us good convergence, iterating 10 times gives us answer accurate to the 10^(-16) for values [x, x+10].
+   * Note: Less precise as x moves away from 1.
+   * Note: Computing 100 iteration for maximum precision over a larger domain, but more expensive.
+   *
+   * @param x
+   * @return ln(x)
+   */
   public static double log_e_x(double x) {
-    return x;
+    if (x <= 0)
+      return Double.NEGATIVE_INFINITY; // Avoid floating point error around x=0.
+
+    double res = x - 1;    // Initial guess for Newton's Method
+
+    for (int i = 0; i < 100; i++)
+      res = res - 1 + x * Calculator.exp(-res);
+
+    return res;
   }
 
   public static double log_10_x(double x) {
