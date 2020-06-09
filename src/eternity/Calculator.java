@@ -5,8 +5,12 @@ import java.util.function.Function;
 
 import eternity.Errors.SquareRootOfNegativeException;
 import eternity.Errors.DivideByZeroException;
+import eternity.Errors.NegativePowerOfZeroException;
 
 public class Calculator {
+  public static final double PI = 3.1415926535897932384;
+  public static final double E = 2.7182818284590452354;
+
   public static double sin(double x) {
     theta = theta * 0.017453292519943295;
     int power = 1;
@@ -55,25 +59,70 @@ public class Calculator {
     return sum;
   }
 
-  /**
-   * Exponential
-   *
-   * @param x
-   * @return e^x
-   */
-  public static double exp(double x) {
-    // TODO: Replace with our own implementation
-    return Math.exp(x);
-  }
-
-  public static double a_to_the_x(double x) {
-    return x;
-  }
-
   public static double x_to_the_y(double x, double y) {
+    if (x==0){
+      if (y>0){
+        return (0);
+      }
+      else{
+          throw new NegativePowerOfZeroException();
+      }
+
+    }
+    if (x==1){
+      return (1);
+    }
+
+    if( x==-1){
+      if( y != (int)y){
+        return (-1);
+      }
+      else{
+        if(Calculator.CheckEvenOdd((y))){
+          return (1);
+        }else{
+          return (-1);
+        }
+      }
+    }
+
+    if(y==0){
+      return (1);
+    }
+
+    if(y == 1){
+      return (x);
+    }
+
+    if(y<1 && (y== (int) y)){
+      double result = x;
+      while( y-->1){
+        result *= x;
+      }
+
+    }
+
+    if(y>1 && (y== (int) y) ){
+      y *= -1;
+      double result = x;
+      while( y-->1){
+        result *= x;
+      }
+      result = 1 / result ;
+      return (result);
+    }
+
+    if(y<1 && (y!= (int) y)){
+      //TODO decimal power
+
+    }
+
+    if(y>1 && (y!= (int) y) ){
+      //TODO decimal power
+
+    }
     return x;
   }
-
   /**
    * Natural log Author: Isaac Doré - 40043159
    *
@@ -92,7 +141,7 @@ public class Calculator {
 
     double res = x - 1; // Initial guess for Newton's Method
 
-    for (int i = 0; i < 100; i++) res = res - 1 + x * Calculator.exp(-res);
+    for (int i = 0; i < 100; i++) res = res - 1 + x * Calculator.x_to_the_y(Calculator.E, -res);
 
     return res;
   }
