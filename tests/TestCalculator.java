@@ -8,6 +8,34 @@ import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
+  // Sin(x)
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void sin_zero() {
+    assertEquals(Calculator.sin(0), 0);
+  }
+
+  @Test
+  public void sin_pos_int() {
+    assertEquals(Calculator.sin(10), -0.54402111);
+  }
+
+  @Test
+  public void sin_neg_int() {
+    assertEquals(Calculator.sin(-10), 0.54402111);
+  }
+
+  @Test
+  public void sin_pos_double() {
+    assertEquals(Calculator.sin(10.5), -0.87969576);
+  }
+
+  @Test
+  public void sin_pos_double() {
+    assertEquals(Calculator.sin(-10.5), 0.87969576);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
   // Mean Absolute Deviation
   ///////////////////////////////////////////////////////////////////////////////
   @Test

@@ -7,9 +7,21 @@ import eternity.Errors.SquareRootOfNegativeException;
 import eternity.Errors.DivideByZeroException;
 
 public class Calculator {
-  // pick one
   public static double sin(double x) {
-    return x;
+    theta = theta * 0.017453292519943295;
+    int power = 1;
+    double sinx = 0;
+    for (int i = 1; i <= 10; i++) {
+      double term = 0;
+      if (i % 2 == 0) {
+        term = -(x_to_the_y(theta, power) / factorial(power));
+      } else {
+        term = (x_to_the_y(theta, power) / factorial(power));
+      }
+      sinx = sinx + term;
+      power = power + 2;
+    }
+    return sinx;
   }
 
   public static double ten_to_the_x(double x) {
@@ -148,7 +160,10 @@ public class Calculator {
    */
   public static double mean(ArrayList<Double> numbers) {
     // throw divided by zero exception if no numbers are in the list
-    if (numbers.size() == 0) throw new DivideByZeroException();
+    if (numbers.size() == 0) {
+      throw new DivideByZeroException();
+    }
+
     return sum(map(numbers, x -> x)) / numbers.size();
   }
 
@@ -175,6 +190,7 @@ public class Calculator {
     for (var i = 0; i < numbers.size(); i++) {
       numbers.set(i, fn.apply(numbers.get(i)));
     }
+
     return numbers;
   }
 
@@ -189,6 +205,15 @@ public class Calculator {
     for (var i = 0; i < numbers.size(); i++) {
       ret += numbers.get(i);
     }
+
     return ret;
+  }
+
+  public static int factorial(int x) {
+    if (x == 0) {
+      return 1;
+    }
+
+    return x * factorial(x - 1);
   }
 }
