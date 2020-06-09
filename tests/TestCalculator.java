@@ -8,6 +8,46 @@ import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
+  // Mean Absolute Deviation
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void mad_no_input() {
+    try {
+      var list = makeArrayList();
+      Calculator.mean_absolute_deviation(list);
+    }catch (DivideByZeroException e) {
+      assertTrue(true);
+    }
+    catch (Exception e) {
+      assertFalse(false);
+    }
+  }
+
+  @Test
+  public void mad_single_int() {
+    var list = makeArrayList(1);
+    assertEquals(Calculator.mean_absolute_deviation(list), 0);
+  }
+
+  @Test
+  public void mad_mulitiple_ints() {
+    var list = makeArrayList(1,2,3,4,5);
+    assertEquals(Calculator.mean_absolute_deviation(list), 1.2);
+  }
+
+  @Test
+  public void mad_single_double() {
+    var list = makeArrayList(1.5);
+    assertEquals(Calculator.mean_absolute_deviation(list), 0);
+  }
+
+  @Test
+  public void mad_multiple_doubles() {
+    var list = makeArrayList(1.5, 2.8, 3.1, 4.75, 5.9);
+    assertEquals(Calculator.mean_absolute_deviation(list), 1.372);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
   // E^x, euler constant
   ///////////////////////////////////////////////////////////////////////////////
   @Test
