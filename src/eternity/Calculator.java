@@ -11,26 +11,34 @@ public class Calculator {
     return x;
   }
 
-  public static double ten_to_the_x(double x) {
-    final double ln10 = log_e_x(10);
+  public static double ten_to_the_x(double x){
+
+    final double ln10 = 2.30258509299;
     final double e = 2.718281828459;
 
+    // TODO implement ln(10)
+    // TODO implement e
+
     if (x == 0) {
-      return (1);
+      return 1;
     }
     if (x == 1) {
-      return (10);
+      return 10;
     }
     if (x == -1) {
-      return (0.1);
+      return 0.1;
     }
 
     double new_e_exponent = x * ln10;
     double sum = 1;
 
-    for (int i = 100; i > 0; --i) {
+    for (int i = 1000; i > 0; --i) {
       sum = 1 + new_e_exponent * sum / (i);
     }
+    if(x == (int)x){
+      sum = (int)(sum * 100 + 0.5) / 100;
+    }
+
     return sum;
   }
 
