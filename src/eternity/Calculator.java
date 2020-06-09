@@ -11,18 +11,6 @@ public class Calculator {
     return x;
   }
 
-  public static double cos(double x) {
-    return x;
-  }
-
-  public static double sinh(double x) {
-    return x;
-  }
-
-  public static double cosh(double x) {
-    return x;
-  }
-
   public static double ten_to_the_x(double x) {
     final double ln10 = log_e_x(10);
     final double e = 2.718281828459;
@@ -44,10 +32,6 @@ public class Calculator {
       sum = 1 + new_e_exponent * sum / (i);
     }
     return sum;
-  }
-
-  public static double pi_to_the_x(double x) {
-    return x;
   }
 
   /**
