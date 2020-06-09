@@ -8,21 +8,20 @@ import eternity.Errors.DivideByZeroException;
 
 public class Calculator {
   public static double sin(double x) {
-      theta = theta*0.017453292519943295;
-      int power = 1;
-      double sinx = 0;
-      for (int i=1; i<=10; i++) {
-          double term=0;
-          if(i%2==0) {
-              term=-(x_to_the_y(theta, power)/factorial(power));
-          }
-          else {
-              term=(x_to_the_y(theta, power)/factorial(power));
-          }
-          sinx=sinx+term;
-          power=power+2;
+    theta = theta * 0.017453292519943295;
+    int power = 1;
+    double sinx = 0;
+    for (int i = 1; i <= 10; i++) {
+      double term = 0;
+      if (i % 2 == 0) {
+        term = -(x_to_the_y(theta, power) / factorial(power));
+      } else {
+        term = (x_to_the_y(theta, power) / factorial(power));
       }
-      return sinx;
+      sinx = sinx + term;
+      power = power + 2;
+    }
+    return sinx;
   }
 
   public static double ten_to_the_x(double x) {
@@ -211,10 +210,10 @@ public class Calculator {
   }
 
   public static int factorial(int x) {
-    if (x==0) {
+    if (x == 0) {
       return 1;
     }
 
-    return x*factorial(x-1);
+    return x * factorial(x - 1);
   }
 }
