@@ -11,7 +11,7 @@ public class Calculator {
     return x;
   }
 
-  public static double ten_to_the_x(double x){
+  public static double ten_to_the_x(double x) {
 
     final double ln10 = 2.30258509299;
     final double e = 2.718281828459;
@@ -35,6 +35,7 @@ public class Calculator {
     for (int i = 1000; i > 0; --i) {
       sum = 1 + new_e_exponent * sum / (i);
     }
+
     if((x == (int)x) && (x > 0)){
       sum = (int)(sum * 100 + 0.5) / 100;
     }
