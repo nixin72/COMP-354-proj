@@ -1,16 +1,101 @@
-package eternity.Tests;
-
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import eternity.Calculator;
-import eternity.Errors.DivideByZeroException;
 import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
+  ///////////////////////////////////////////////////////////////////////////////
+  // Mean Absolute Deviation
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void mad_no_input() {
+    try {
+      var list = makeArrayList();
+      Calculator.mean_absolute_deviation(list);
+    } catch (DivideByZeroException e) {
+      assertTrue(true);
+    } catch (Exception e) {
+      assertFalse(false);
+    }
+  }
+
+  @Test
+  public void mad_single_int() {
+    var list = makeArrayList(1);
+    assertEquals(Calculator.mean_absolute_deviation(list), 0);
+  }
+
+  @Test
+  public void mad_mulitiple_ints() {
+    var list = makeArrayList(1, 2, 3, 4, 5);
+    assertEquals(Calculator.mean_absolute_deviation(list), 1.2);
+  }
+
+  @Test
+  public void mad_single_double() {
+    var list = makeArrayList(1.5);
+    assertEquals(Calculator.mean_absolute_deviation(list), 0);
+  }
+
+  @Test
+  public void mad_multiple_doubles() {
+    var list = makeArrayList(1.5, 2.8, 3.1, 4.75, 5.9);
+    assertEquals(Calculator.mean_absolute_deviation(list), 1.372);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // E^x, euler constant
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void e_to_the_x_0() {
+    assertEquals(Calculator.exp(0), 1);
+  }
+
+  @Test
+  public void e_to_the_x_pos_int() {
+    assertEquals(Calculator.exp(10), 22026.46579);
+  }
+
+  @Test
+  public void e_to_the_x_neg_int() {
+    assertEquals(Calculator.exp(-5), 0.006737946);
+  }
+
+  @Test
+  public void e_to_the_x_pos_double() {
+    assertEquals(Calculator.exp(3.5), 33.11545196);
+  }
+
+  @Test
+  public void e_to_the_x_neg_double() {
+    assertEquals(Calculator.exp(-7.3), 0.000675538);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // 10^x
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void ten_to_the_x_pos_int() {
+    assertEquals(Calculator.ten_to_the_x(5), 100000);
+  }
+
+  @Test
+  public void ten_to_the_x_neg_int() {
+    assertEquals(Calculator.ten_to_the_x(-3), 0.001);
+  }
+
+  @Test
+  public void ten_to_the_x_pos_double() {
+    assertEquals(Calculator.ten_to_the_x(5.417735), 261658.59194);
+  }
+
+  @Test
+  public void ten_to_the_x_neg_double() {
+    assertEquals(Calculator.ten_to_the_x(-2.789123456), 0.00162508673);
+  }
 
   ///////////////////////////////////////////////////////////////////////////////
   // mean
@@ -71,35 +156,6 @@ class TestCalculator {
   }
 
   ///////////////////////////////////////////////////////////////////////////////
-  // Square root
-  ///////////////////////////////////////////////////////////////////////////////
-  @Test
-  public void square_root_exact() {
-    assertEquals(Calculator.square_root(4), 2);
-  }
-
-  @Test
-  public void square_root_double() {
-    assertEquals(Calculator.square_root(2.5), 1.5811388300841935);
-  }
-
-  @Test
-  public void square_root_inexact() {
-    assertEquals(Calculator.square_root(2), 1.4142135623746899);
-  }
-
-  @Test
-  public void square_root_negative() {
-    try {
-      Calculator.square_root(-1);
-    } catch (SquareRootOfNegativeException e) {
-      assertTrue(true);
-    } catch (Exception e) {
-      assertFalse(false);
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////
   // Absolute Value
   ///////////////////////////////////////////////////////////////////////////////
   @Test
@@ -123,46 +179,38 @@ class TestCalculator {
   }
 
   ///////////////////////////////////////////////////////////////////////////////
-  // Mean Absolute Deviation
+  // Square root
   ///////////////////////////////////////////////////////////////////////////////
   @Test
-  public void mad_no_input() {
+  public void square_root_exact() {
+    assertEquals(Calculator.square_root(4), 2);
+  }
+
+  @Test
+  public void square_root_double() {
+    assertEquals(Calculator.square_root(2.5), 1.5811388300841935);
+  }
+
+  @Test
+  public void square_root_inexact() {
+    assertEquals(Calculator.square_root(2), 1.4142135623746899);
+  }
+
+  @Test
+  public void square_root_negative() {
     try {
-      var list = makeArrayList();
-      Calculator.mean_absolute_deviation(list);
-    } catch (DivideByZeroException e) {
+      Calculator.square_root(-1);
+      assertFalse(false);
+    } catch (SquareRootOfNegativeException e) {
       assertTrue(true);
     } catch (Exception e) {
       assertFalse(false);
     }
   }
 
-  @Test
-  public void mad_single_int() {
-    var list = makeArrayList(1);
-    assertEquals(Calculator.mean_absolute_deviation(list), 0);
-  }
-
-  @Test
-  public void mad_mulitiple_ints() {
-    var list = makeArrayList(1, 2, 3, 4, 5);
-    assertEquals(Calculator.mean_absolute_deviation(list), 1.2);
-  }
-
-  @Test
-  public void mad_single_double() {
-    var list = makeArrayList(1.5);
-    assertEquals(Calculator.mean_absolute_deviation(list), 0);
-  }
-
-  @Test
-  public void mad_multiple_doubles() {
-    var list = makeArrayList(1.5, 2.8, 3.1, 4.75, 5.9);
-    assertEquals(Calculator.mean_absolute_deviation(list), 1.372);
-  }
-
   ///////////////////////////////////////////////////////////////////////////////
   // Helpers
+  ///////////////////////////////////////////////////////////////////////////////
   /*
    * Just helper methods so you don't have to do
    * var list = new ArrayList<Double>();
