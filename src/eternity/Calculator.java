@@ -12,7 +12,7 @@ public class Calculator {
   public static final double E = 2.7182818284590452354;
 
   public static double sin(double x) {
-    theta = theta * 0.017453292519943295;
+    double theta = x * 0.017453292519943295;
     int power = 1;
     double sinx = 0;
     for (int i = 1; i <= 10; i++) {
