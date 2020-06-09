@@ -36,6 +36,39 @@ class TestCalculator {
   }
 
   ///////////////////////////////////////////////////////////////////////////////
+  // x_to_the_y
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void exponential_pos_int_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(2, 2), 4);
+  }
+
+  @Test
+  public void exponential_pos_int_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(-2, 2), 4);
+  }
+
+  @Test
+  public void exponential_pos_double_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(2.5, 2), 6.25);
+  }
+
+  @Test
+  public void exponential_neg_double_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(-2.5, 2), 6.25);
+  }
+
+  @Test
+  public void exponential_pos_double_x_pos_double_y() {
+    assertEquals(Calculator.x_to_the_y(2.5, 2.5), 9.882117688);
+  }
+
+  @Test
+  public void exponential_pos_double_x_pos_double_y() {
+    assertEquals(Calculator.x_to_the_y(-2.5, 2.5), 0.101192885);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
   // Mean Absolute Deviation
   ///////////////////////////////////////////////////////////////////////////////
   @Test
