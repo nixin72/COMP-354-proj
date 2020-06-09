@@ -60,65 +60,61 @@ public class Calculator {
   }
 
   public static double x_to_the_y(double x, double y) {
-    if (x==0){
-      if (y>0){
+    if (x == 0) {
+      if (y > 0) {
         return (0);
+      } else {
+        throw new NegativePowerOfZeroException();
       }
-      else{
-          throw new NegativePowerOfZeroException();
-      }
-
     }
-    if (x==1){
+    if (x == 1) {
       return (1);
     }
 
-    if( x==-1){
-      if( y != (int)y){
+    if (x == -1) {
+      if (y != (int) y) {
         return (-1);
-      }
-      else{
-        if(Calculator.CheckEvenOdd((y))){
+      } else {
+        if (Calculator.CheckEvenOdd((y))) {
           return (1);
-        }else{
+        } else {
           return (-1);
         }
       }
     }
 
-    if(y==0){
+    if (y == 0) {
       return (1);
     }
 
-    if(y == 1){
+    if (y == 1) {
       return (x);
     }
 
-    if(y<1 && (y== (int) y)){
+    if (y < 1 && (y == (int) y)) {
       double result = x;
-      while( y-->1){
+      while (y-- > 1) {
         result *= x;
       }
-
     }
 
-    if(y>1 && (y== (int) y) ){
+    if (y > 1 && (y == (int) y)) {
       y *= -1;
       double result = x;
-      while( y-->1){
+      while (y-- > 1) {
         result *= x;
       }
-      result = 1 / result ;
+      result = 1 / result;
       return (result);
     }
 
-    if(y<1 && (y!= (int) y)){
-      //TODO decimal power
+    if (y < 1 && (y != (int) y)) {
+      // TODO decimal power
 
     }
 
-    if(y>1 && (y!= (int) y) ){
-      //TODO decimal power
+    if (y > 1 && (y != (int) y)) {
+      // TODO decimal power
 
     }
     return x;
