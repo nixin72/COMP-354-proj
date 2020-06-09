@@ -35,7 +35,7 @@ public class Calculator {
     for (int i = 1000; i > 0; --i) {
       sum = 1 + new_e_exponent * sum / (i);
     }
-    if(x == (int)x){
+    if((x == (int)x) && (x > 0)){
       sum = (int)(sum * 100 + 0.5) / 100;
     }
 
