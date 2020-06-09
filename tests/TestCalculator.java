@@ -15,10 +15,9 @@ class TestCalculator {
     try {
       var list = makeArrayList();
       Calculator.mean_absolute_deviation(list);
-    }catch (DivideByZeroException e) {
+    } catch (DivideByZeroException e) {
       assertTrue(true);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       assertFalse(false);
     }
   }
@@ -31,7 +30,7 @@ class TestCalculator {
 
   @Test
   public void mad_mulitiple_ints() {
-    var list = makeArrayList(1,2,3,4,5);
+    var list = makeArrayList(1, 2, 3, 4, 5);
     assertEquals(Calculator.mean_absolute_deviation(list), 1.2);
   }
 
