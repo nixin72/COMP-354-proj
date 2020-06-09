@@ -75,7 +75,7 @@ public class Calculator {
       if (y != (int) y) {
         return (-1);
       } else {
-        if (Calculator.CheckEvenOdd((y))) {
+        if (Calculator.CheckEvenOdd((int)y)) {
           return (1);
         } else {
           return (-1);
@@ -119,6 +119,13 @@ public class Calculator {
     }
     return x;
   }
+
+  public static boolean CheckEvenOdd(int number){
+    double result = number / 2;
+    // true = even, false = odd
+    return result == (int)result;
+  }
+
   /**
    * Natural log Author: Isaac Doré - 40043159
    *
