@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import eternity.Errors.DivideByZeroException;
 import org.junit.jupiter.api.Test;
 import eternity.Calculator;
 import eternity.Errors.SquareRootOfNegativeException;
@@ -31,7 +32,7 @@ class TestCalculator {
   }
 
   @Test
-  public void sin_pos_double() {
+  public void sin_neg_double() {
     assertEquals(Calculator.sin(-10.5), 0.87969576);
   }
 
@@ -44,7 +45,7 @@ class TestCalculator {
   }
 
   @Test
-  public void exponential_pos_int_x_pos_int_y() {
+  public void exponential_neg_int_x_pos_int_y() {
     assertEquals(Calculator.x_to_the_y(-2, 2), 4);
   }
 
@@ -64,7 +65,7 @@ class TestCalculator {
   }
 
   @Test
-  public void exponential_pos_double_x_pos_double_y() {
+  public void exponential_neg_double_x_pos_double_y() {
     assertEquals(Calculator.x_to_the_y(-2.5, 2.5), 0.101192885);
   }
 
