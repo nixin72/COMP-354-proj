@@ -36,8 +36,8 @@ public class Calculator {
       sum = 1 + new_e_exponent * sum / (i);
     }
 
-    if((x == (int)x) && (x > 0)){
-      sum = (int)(sum * 100 + 0.5) / 100;
+    if ((x == (int) x) && (x > 0)) {
+      sum = (int) (sum * 100 + 0.5) / 100;
     }
 
     return sum;
