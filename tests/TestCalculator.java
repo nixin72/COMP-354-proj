@@ -8,6 +8,57 @@ import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
+  // E^x, euler constant
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void e_to_the_x_0() {
+    assertEquals(Calculator.exp(0), 1);
+  }
+
+  @Test
+  public void e_to_the_x_pos_int() {
+    assertEquals(Calculator.exp(10), 22026.46579);
+  }
+
+  @Test
+  public void e_to_the_x_neg_int() {
+    assertEquals(Calculator.exp(-5), 0.006737946);
+  }
+
+  @Test
+  public void e_to_the_x_pos_double() {
+    assertEquals(Calculator.exp(3.5), 33.11545196);
+  }
+
+  @Test
+  public void e_to_the_x_neg_double() {
+    assertEquals(Calculator.exp(-7.3), 0.000675538);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // 10^x
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void ten_to_the_x_pos_int() {
+    assertEquals(Calculator.ten_to_the_x(5), 100000);
+  }
+
+  @Test
+  public void ten_to_the_x_neg_int() {
+    assertEquals(Calculator.ten_to_the_x(-3), 0.001);
+  }
+
+  @Test
+  public void ten_to_the_x_pos_double() {
+    assertEquals(Calculator.ten_to_the_x(5.417735), 261658.59194);
+  }
+
+  @Test
+  public void ten_to_the_x_neg_double() {
+    assertEquals(Calculator.ten_to_the_x(-2.789123456), 0.00162508673);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
   // mean
   ///////////////////////////////////////////////////////////////////////////////
   @Test
@@ -66,35 +117,6 @@ class TestCalculator {
   }
 
   ///////////////////////////////////////////////////////////////////////////////
-  // Square root
-  ///////////////////////////////////////////////////////////////////////////////
-  @Test
-  public void square_root_exact() {
-    assertEquals(Calculator.square_root(4), 2);
-  }
-
-  @Test
-  public void square_root_double() {
-    assertEquals(Calculator.square_root(2.5), 1.5811388300841935);
-  }
-
-  @Test
-  public void square_root_inexact() {
-    assertEquals(Calculator.square_root(2), 1.4142135623746899);
-  }
-
-  @Test
-  public void square_root_negative() {
-    try {
-      Calculator.square_root(-1);
-    } catch (SquareRootOfNegativeException e) {
-      assertTrue(true);
-    } catch (Exception e) {
-      assertFalse(false);
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////
   // Absolute Value
   ///////////////////////////////////////////////////////////////////////////////
   @Test
@@ -118,26 +140,33 @@ class TestCalculator {
   }
 
   ///////////////////////////////////////////////////////////////////////////////
-  // 10^x
+  // Square root
   ///////////////////////////////////////////////////////////////////////////////
   @Test
-  public void ten_to_the_x_pos_int() {
-    assertEquals(Calculator.ten_to_the_x(5), 100000);
+  public void square_root_exact() {
+    assertEquals(Calculator.square_root(4), 2);
   }
 
   @Test
-  public void ten_to_the_x_neg_int() {
-    assertEquals(Calculator.ten_to_the_x(-3), 0.001);
+  public void square_root_double() {
+    assertEquals(Calculator.square_root(2.5), 1.5811388300841935);
   }
 
   @Test
-  public void ten_to_the_x_pos_double() {
-    assertEquals(Calculator.ten_to_the_x(5.417735), 261658.59194);
+  public void square_root_inexact() {
+    assertEquals(Calculator.square_root(2), 1.4142135623746899);
   }
 
   @Test
-  public void ten_to_the_x_neg_double() {
-    assertEquals(Calculator.ten_to_the_x(-2.789123456), 0.00162508673);
+  public void square_root_negative() {
+    try {
+      Calculator.square_root(-1);
+      assertFalse(false);
+    } catch (SquareRootOfNegativeException e) {
+      assertTrue(true);
+    } catch (Exception e) {
+      assertFalse(false);
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////////////
