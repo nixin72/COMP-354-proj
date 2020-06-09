@@ -1,7 +1,7 @@
-/*
-Refered from: http://developer.classpath.org/doc/java/lang/StrictMath-source.html
+package eternity; /*
+                  Refered from: http://developer.classpath.org/doc/java/lang/StrictMath-source.html
 
- */
+                   */
 
 public class Euler {
   private static final double TWO_54 = 0x40000000000000L,
@@ -83,7 +83,7 @@ public class Euler {
   }
 
   // public static void main(String[] args) {
-  //     Euler test = new Euler();
+  //     eternity.Euler test = new eternity.Euler();
   //     System.out.println(test.exp(3));
   // }
 }

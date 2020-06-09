@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import eternity.Errors.DivideByZeroException;
+import eternity.Euler;
 import org.junit.jupiter.api.Test;
 import eternity.Calculator;
 import eternity.Errors.SquareRootOfNegativeException;
@@ -31,8 +33,41 @@ class TestCalculator {
   }
 
   @Test
-  public void sin_pos_double() {
+  public void sin_neg_double() {
     assertEquals(Calculator.sin(-10.5), 0.87969576);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // x_to_the_y
+  ///////////////////////////////////////////////////////////////////////////////
+  @Test
+  public void exponential_pos_int_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(2, 2), 4);
+  }
+
+  @Test
+  public void exponential_neg_int_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(-2, 2), 4);
+  }
+
+  @Test
+  public void exponential_pos_double_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(2.5, 2), 6.25);
+  }
+
+  @Test
+  public void exponential_neg_double_x_pos_int_y() {
+    assertEquals(Calculator.x_to_the_y(-2.5, 2), 6.25);
+  }
+
+  @Test
+  public void exponential_pos_double_x_pos_double_y() {
+    assertEquals(Calculator.x_to_the_y(2.5, 2.5), 9.882117688);
+  }
+
+  @Test
+  public void exponential_neg_double_x_pos_double_y() {
+    assertEquals(Calculator.x_to_the_y(-2.5, 2.5), 0.101192885);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -79,27 +114,27 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void e_to_the_x_0() {
-    assertEquals(Calculator.exp(0), 1);
+    assertEquals(Euler.exp(0), 1);
   }
 
   @Test
   public void e_to_the_x_pos_int() {
-    assertEquals(Calculator.exp(10), 22026.46579);
+    assertEquals(Euler.exp(10), 22026.46579);
   }
 
   @Test
   public void e_to_the_x_neg_int() {
-    assertEquals(Calculator.exp(-5), 0.006737946);
+    assertEquals(Euler.exp(-5), 0.006737946);
   }
 
   @Test
   public void e_to_the_x_pos_double() {
-    assertEquals(Calculator.exp(3.5), 33.11545196);
+    assertEquals(Euler.exp(3.5), 33.11545196);
   }
 
   @Test
   public void e_to_the_x_neg_double() {
-    assertEquals(Calculator.exp(-7.3), 0.000675538);
+    assertEquals(Euler.exp(-7.3), 0.000675538);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
