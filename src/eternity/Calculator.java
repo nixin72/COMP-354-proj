@@ -144,7 +144,7 @@ public class Calculator {
 
     double res = x - 1; // Initial guess for Newton's Method
 
-    for (int i = 0; i < 100; i++) res = res - 1 + x * Calculator.x_to_the_y(Calculator.E, -res);
+    for (int i = 0; i < 100; i++) res = res - 1 + x * Euler.exp(-res);
 
     return res;
   }
