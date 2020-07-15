@@ -27,6 +27,10 @@ public class CalculatorApp extends JFrame implements ActionListener {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
 
+    // Cache constants computations
+    Calculator.E();
+    Calculator.PI();
+
     URL iconURL = getClass().getResource("/calLogo.png");
     ImageIcon icon = new ImageIcon(iconURL);
     this.setIconImage(icon.getImage());

@@ -4,6 +4,7 @@ package eternity; /*
                    */
 
 public class Euler {
+
   private static final double TWO_54 = 0x40000000000000L,
       P1 = 0.16666666666666602,
       P2 = -2.7777777777015593e-3,

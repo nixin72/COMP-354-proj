@@ -5,11 +5,41 @@ import java.util.function.Function;
 
 import eternity.Errors.SquareRootOfNegativeException;
 import eternity.Errors.DivideByZeroException;
-import eternity.Errors.NegativePowerOfZeroException;
 
 public class Calculator {
-  public static final double PI = 3.1415926535897932384;
-  public static final double E = 2.7182818284590452354;
+  private static double PI = 0;
+  private static double E = 0;
+
+  public static double PI() {
+    if (PI != 0) return PI;
+
+    double Pi = 0.0;
+
+    for (int i = 1; i < 100000000; i++) {
+      Pi += (mod(i, 2) == 0) ? -1 / (2 * (double) i - 1) : 1 / (2 * (double) i - 1);
+    }
+    PI = Pi * 4;
+    return PI;
+  }
+
+  public static double E() {
+    if (E != 0) return E;
+
+    double e = 1;
+    for (int i = 1; i < 32; i++) {
+      e = e + 1 / (double) (factorial(i));
+    }
+    E = e;
+
+    return E;
+  }
+
+  public static int mod(int x, int modulo) {
+    while (x >= modulo) {
+      x = x - modulo;
+    }
+    return x;
+  }
 
   public static double sin(double x) {
     double theta = x * 0.017453292519943295;
@@ -29,11 +59,7 @@ public class Calculator {
   }
 
   public static double ten_to_the_x(double x) {
-    final double ln10 = 2.30258509299;
-    final double e = 2.718281828459;
-
-    // TODO implement ln(10)
-    // TODO implement e
+    final double ln10 = log_e_x(10);
 
     if (x == 0) {
       return 1;
@@ -64,7 +90,7 @@ public class Calculator {
       if (y > 0) {
         return (0);
       } else {
-        throw new NegativePowerOfZeroException();
+        return Double.NEGATIVE_INFINITY;
       }
     }
     if (x == 1) {
