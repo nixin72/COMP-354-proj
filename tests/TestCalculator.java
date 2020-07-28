@@ -9,32 +9,36 @@ import eternity.Calculator;
 import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
+
+  // Supporting up to 1 x 10^-12 precision error
+  public static final double epsilon = 0.000001;
+
   ///////////////////////////////////////////////////////////////////////////////
   // Sin(x)
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void sin_zero() {
-    assertEquals(Calculator.sin(0), 0);
+    assertEquals(0, Calculator.sin(0));
   }
 
   @Test
   public void sin_pos_int() {
-    assertEquals(Calculator.sin(10), -0.54402111);
+    assertEquals(0.17364817766693034, Calculator.sin(10), epsilon);
   }
 
   @Test
   public void sin_neg_int() {
-    assertEquals(Calculator.sin(-10), 0.54402111);
+    assertEquals(-0.17364817766693034, Calculator.sin(-10), epsilon);
   }
 
   @Test
   public void sin_pos_double() {
-    assertEquals(Calculator.sin(10.5), -0.87969576);
+    assertEquals(0.18223552549214745, Calculator.sin(10.5), epsilon);
   }
 
   @Test
   public void sin_neg_double() {
-    assertEquals(Calculator.sin(-10.5), 0.87969576);
+    assertEquals(-0.18223552549214745, Calculator.sin(-10.5), epsilon);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -42,32 +46,32 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void exponential_pos_int_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(2, 2), 4);
+    assertEquals(4, Calculator.power(2, 2));
   }
 
   @Test
   public void exponential_neg_int_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(-2, 2), 4);
+    assertEquals(4, Calculator.power(-2, 2));
   }
 
   @Test
   public void exponential_pos_double_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(2.5, 2), 6.25);
+    assertEquals(6.25, Calculator.power(2.5, 2));
   }
 
   @Test
   public void exponential_neg_double_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(-2.5, 2), 6.25);
+    assertEquals(6.25, Calculator.power(-2.5, 2));
   }
 
   @Test
   public void exponential_pos_double_x_pos_double_y() {
-    assertEquals(Calculator.x_to_the_y(2.5, 2.5), 9.882117688);
+    assertEquals(9.88211768802618, Calculator.power(2.5, 2.5), epsilon);
   }
 
   @Test
   public void exponential_neg_double_x_pos_double_y() {
-    assertEquals(Calculator.x_to_the_y(-2.5, 2.5), 0.101192885);
+    assertEquals(Calculator.power(-2.5, 2.5), 9.882117688026304);
   }
 
   ///////////////////////////////////////////////////////////////////////////////

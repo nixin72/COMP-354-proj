@@ -15,7 +15,7 @@ public class Calculator {
 
     double Pi = 0.0;
 
-    for (int i = 1; i < 100000000; i++) {
+    for (int i = 1; i < 100000; i++) {
       Pi += (mod(i, 2) == 0) ? -1 / (2 * (double) i - 1) : 1 / (2 * (double) i - 1);
     }
     PI = Pi * 4;
@@ -34,26 +34,28 @@ public class Calculator {
     return E;
   }
 
-  public static int mod(int x, int modulo) {
-    while (x >= modulo) {
-      x = x - modulo;
-    }
-    return x;
+  public static int mod(int base, int divider) {
+    int maxDividend = base / divider;
+    int result = base - (maxDividend * divider);
+    return result;
   }
 
   public static double sin(double x) {
-    double theta = x * 0.017453292519943295;
-    int power = 1;
+    double Pi = Calculator.PI();
+
+    double theta = x * ( Pi / 180); // calculate for degree
+
     double sinx = 0;
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1, power = 1; i <= 10; i++, power += 2) {
       double term = 0;
-      if (i % 2 == 0) {
-        term = -(x_to_the_y(theta, power) / factorial(power));
+      int powerFactorial = factorial(power);
+      double powerOfx = Calculator.power(theta, power);
+      if (Calculator.mod(i, 2) == 0) {
+        term = -powerOfx / powerFactorial;
       } else {
-        term = (x_to_the_y(theta, power) / factorial(power));
+        term = powerOfx / powerFactorial;
       }
-      sinx = sinx + term;
-      power = power + 2;
+      sinx += term;
     }
     return sinx;
   }
@@ -124,24 +126,33 @@ public class Calculator {
       }
     }
 
-    if (y > 1 && (y == (int) y)) {
-      y *= -1;
-      double result = x;
-      while (y-- > 1) {
-        result *= x;
+    if (y == (int) y) {
+      if(y < 0) {
+        y *= -1;
+        double result = x;
+        while (y-- > 1) {
+          result *= x;
+        }
+        result = 1 / result;
+        return (result);
+      }else{
+        double result = x;
+        while (y-- > 1) {
+          result *= x;
+        }
+        return (result);
       }
-      result = 1 / result;
-      return (result);
     }
 
-    if (y < 1 && (y != (int) y)) {
+    //if we reach this point y is not an int, no need to test for it.
+    //find the factor of 10 that will turn y into an integer
+
+    if (y > 1) {
       // TODO decimal power
 
-    }
-
-    if (y > 1 && (y != (int) y)) {
+    }else{
+      //if we reach this point we know that y is negative
       // TODO decimal power
-
     }
     return x;
   }
@@ -151,6 +162,67 @@ public class Calculator {
     // true = even, false = odd
     return result == (int) result;
   }
+
+  public static double newton_sqrt(double initialGuess, double base){
+    double threshold = 0.00001;
+    double guess = initialGuess;
+    double newGuess = (guess + base/guess) / 2;
+    while (absolute_value(guess - newGuess) > threshold){
+      guess = newGuess;
+      newGuess = (guess + base/guess) / 2;
+    }
+    return newGuess;
+  }
+
+  public static double power(double base, double exponent){
+    boolean basePositive = base > 0 || Calculator.mod((int) exponent, 2) == 0;
+    if(!basePositive){
+      base *= -1;
+    }
+    double threshold = 0.00001;
+    if(exponent == (int) exponent){
+      if(exponent < 0) {
+        exponent *= -1;
+        double result = base;
+        while (exponent-- > 1) {
+          result *= base;
+        }
+        return (basePositive ? 1 : -1) * (1 / result);
+      }else{
+        double result = base;
+        while (exponent-- > 1) {
+          result *= base;
+        }
+        return (basePositive ? 1 : -1) *result;
+      }
+    }
+
+    if(exponent >= 1){
+      double temp = Calculator.power(base, exponent/2);
+      return (basePositive ? 1 : -1) * (temp * temp);
+    }else{
+      double low = 0;
+      double high = 1.0;
+      double sqr = Calculator.newton_sqrt(base/2, base);
+      double acc = sqr;
+      double middle = high/2;
+
+      while(absolute_value(middle - exponent) > threshold){
+        sqr = Calculator.newton_sqrt(sqr/2, sqr);
+        if(middle <= exponent){
+          low = middle;
+          acc *= sqr;
+        }else{
+          high = middle;
+          acc *= (1/sqr);
+        }
+        middle = (low + high) / 2;
+      }
+      return (basePositive ? 1 : -1) * acc;
+    }
+
+  }
+
 
   /**
    * Natural log Author: Isaac Doré - 40043159
