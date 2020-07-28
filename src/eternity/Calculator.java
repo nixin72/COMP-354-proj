@@ -174,28 +174,28 @@ public class Calculator {
     return newGuess;
   }
 
-  public static double power(double base, double exponent){
+  public static double power(double base, double exponent) {
     boolean basePositive = base > 0 ? true : false;
     boolean exponentPositive = exponent > 0 ? true : false;
-    if(!basePositive){
-      if(Calculator.mod((int)exponent, 2 ) == 0){
+    if (!basePositive) {
+      if (Calculator.mod((int) exponent, 2) == 0) {
         basePositive = true;
         base *= -1;
-      }else if(!exponentPositive){
+      } else if (!exponentPositive) {
         throw new ArithmeticException("Operation not allowed");
-      }else{
+      } else {
         base *= -1;
       }
     }
 
-    if(!exponentPositive){
+    if (!exponentPositive) {
       exponent *= -1;
     }
 
     double threshold = 0.00001;
-    //if exponent is an integer
-    if(exponent == (int) exponent){
-      if(exponent < 0) {
+    // if exponent is an integer
+    if (exponent == (int) exponent) {
+      if (exponent < 0) {
         exponent *= -1;
         double result = base;
         while (exponent-- > 1) {
@@ -211,9 +211,9 @@ public class Calculator {
       }
     }
 
-    //if exponent is a floating point number
-    if(exponent >= 1){
-      double temp = Calculator.power(base, exponent/2);
+    // if exponent is a floating point number
+    if (exponent >= 1) {
+      double temp = Calculator.power(base, exponent / 2);
       return (basePositive ? 1 : -1) * (temp * temp);
     } else {
       double low = 0;
@@ -233,7 +233,9 @@ public class Calculator {
         }
         middle = (low + high) / 2;
       }
-      return (exponentPositive ? (basePositive ? 1 : -1) * acc : 1 / ((basePositive ? 1 : -1) * acc)) ;
+      return (exponentPositive
+          ? (basePositive ? 1 : -1) * acc
+          : 1 / ((basePositive ? 1 : -1) * acc));
     }
   }
 
