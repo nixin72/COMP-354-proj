@@ -43,7 +43,7 @@ public class Calculator {
   public static double sin(double x) {
     double Pi = Calculator.PI();
 
-    double theta = x * ( Pi / 180); // calculate for degree
+    double theta = x * (Pi / 180); // calculate for degree
 
     double sinx = 0;
     for (int i = 1, power = 1; i <= 10; i++, power += 2) {
@@ -127,7 +127,7 @@ public class Calculator {
     }
 
     if (y == (int) y) {
-      if(y < 0) {
+      if (y < 0) {
         y *= -1;
         double result = x;
         while (y-- > 1) {
@@ -135,7 +135,7 @@ public class Calculator {
         }
         result = 1 / result;
         return (result);
-      }else{
+      } else {
         double result = x;
         while (y-- > 1) {
           result *= x;
@@ -144,14 +144,14 @@ public class Calculator {
       }
     }
 
-    //if we reach this point y is not an int, no need to test for it.
-    //find the factor of 10 that will turn y into an integer
+    // if we reach this point y is not an int, no need to test for it.
+    // find the factor of 10 that will turn y into an integer
 
     if (y > 1) {
       // TODO decimal power
 
-    }else{
-      //if we reach this point we know that y is negative
+    } else {
+      // if we reach this point we know that y is negative
       // TODO decimal power
     }
     return x;
@@ -163,13 +163,13 @@ public class Calculator {
     return result == (int) result;
   }
 
-  public static double newton_sqrt(double initialGuess, double base){
+  public static double newton_sqrt(double initialGuess, double base) {
     double threshold = 0.00001;
     double guess = initialGuess;
-    double newGuess = (guess + base/guess) / 2;
-    while (absolute_value(guess - newGuess) > threshold){
+    double newGuess = (guess + base / guess) / 2;
+    while (absolute_value(guess - newGuess) > threshold) {
       guess = newGuess;
-      newGuess = (guess + base/guess) / 2;
+      newGuess = (guess + base / guess) / 2;
     }
     return newGuess;
   }
@@ -202,12 +202,12 @@ public class Calculator {
           result *= base;
         }
         return (basePositive ? 1 : -1) * (1 / result);
-      }else{
+      } else {
         double result = base;
         while (exponent-- > 1) {
           result *= base;
         }
-        return (basePositive ? 1 : -1) *result;
+        return (basePositive ? 1 : -1) * result;
       }
     }
 
@@ -215,29 +215,27 @@ public class Calculator {
     if(exponent >= 1){
       double temp = Calculator.power(base, exponent/2);
       return (basePositive ? 1 : -1) * (temp * temp);
-    }else{
+    } else {
       double low = 0;
       double high = 1.0;
-      double sqr = Calculator.newton_sqrt(base/2, base);
+      double sqr = Calculator.newton_sqrt(base / 2, base);
       double acc = sqr;
-      double middle = high/2;
+      double middle = high / 2;
 
-      while(absolute_value(middle - exponent) > threshold){
-        sqr = Calculator.newton_sqrt(sqr/2, sqr);
-        if(middle <= exponent){
+      while (absolute_value(middle - exponent) > threshold) {
+        sqr = Calculator.newton_sqrt(sqr / 2, sqr);
+        if (middle <= exponent) {
           low = middle;
           acc *= sqr;
-        }else{
+        } else {
           high = middle;
-          acc *= (1/sqr);
+          acc *= (1 / sqr);
         }
         middle = (low + high) / 2;
       }
       return (exponentPositive ? (basePositive ? 1 : -1) * acc : 1 / ((basePositive ? 1 : -1) * acc)) ;
     }
-
   }
-
 
   /**
    * Natural log Author: Isaac Doré - 40043159
