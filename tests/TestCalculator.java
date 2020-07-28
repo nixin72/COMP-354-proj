@@ -9,32 +9,36 @@ import eternity.Calculator;
 import eternity.Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
+
+  // Supporting up to 1 x 10^-12 precision error
+  public static final double epsilon = 0.000000000001;
+
   ///////////////////////////////////////////////////////////////////////////////
   // Sin(x)
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void sin_zero() {
-    assertEquals(Calculator.sin(0), 0);
+    assertEquals(0, Calculator.sin(0));
   }
 
   @Test
   public void sin_pos_int() {
-    assertEquals(Calculator.sin(10), -0.54402111);
+    assertEquals(0.17364817766693034, Calculator.sin(10), epsilon);
   }
 
   @Test
   public void sin_neg_int() {
-    assertEquals(Calculator.sin(-10), 0.54402111);
+    assertEquals(-0.17364817766693034, Calculator.sin(-10), epsilon);
   }
 
   @Test
   public void sin_pos_double() {
-    assertEquals(Calculator.sin(10.5), -0.87969576);
+    assertEquals(-0.8796957599716700, Calculator.sin(10.5), epsilon);
   }
 
   @Test
   public void sin_neg_double() {
-    assertEquals(Calculator.sin(-10.5), 0.87969576);
+    assertEquals(0.8796957599716700, Calculator.sin(-10.5), epsilon);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -42,31 +46,32 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void exponential_pos_int_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(2, 2), 4);
+    assertEquals(4, Calculator.x_to_the_y(2, 2));
   }
 
   @Test
   public void exponential_neg_int_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(-2, 2), 4);
+    assertEquals(4, Calculator.x_to_the_y(-2, 2));
   }
 
   @Test
   public void exponential_pos_double_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(2.5, 2), 6.25);
+    assertEquals(6.25, Calculator.x_to_the_y(2.5, 2));
   }
 
   @Test
   public void exponential_neg_double_x_pos_int_y() {
-    assertEquals(Calculator.x_to_the_y(-2.5, 2), 6.25);
+    assertEquals(6.25, Calculator.x_to_the_y(-2.5, 2));
   }
 
   @Test
   public void exponential_pos_double_x_pos_double_y() {
-    assertEquals(Calculator.x_to_the_y(2.5, 2.5), 9.882117688);
+    assertEquals(9.88211768802618, Calculator.x_to_the_y(2.5, 2.5), epsilon);
   }
 
   @Test
   public void exponential_neg_double_x_pos_double_y() {
+    // TODO: This should yield a math error or an imaginary number
     assertEquals(Calculator.x_to_the_y(-2.5, 2.5), 0.101192885);
   }
 
@@ -88,25 +93,25 @@ class TestCalculator {
   @Test
   public void mad_single_int() {
     var list = makeArrayList(1);
-    assertEquals(Calculator.mean_absolute_deviation(list), 0);
+    assertEquals(0, Calculator.mean_absolute_deviation(list));
   }
 
   @Test
   public void mad_mulitiple_ints() {
     var list = makeArrayList(1, 2, 3, 4, 5);
-    assertEquals(Calculator.mean_absolute_deviation(list), 1.2);
+    assertEquals(1.2, Calculator.mean_absolute_deviation(list));
   }
 
   @Test
   public void mad_single_double() {
     var list = makeArrayList(1.5);
-    assertEquals(Calculator.mean_absolute_deviation(list), 0);
+    assertEquals(0, Calculator.mean_absolute_deviation(list));
   }
 
   @Test
   public void mad_multiple_doubles() {
     var list = makeArrayList(1.5, 2.8, 3.1, 4.75, 5.9);
-    assertEquals(Calculator.mean_absolute_deviation(list), 1.372);
+    assertEquals(1.372, Calculator.mean_absolute_deviation(list));
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -114,27 +119,27 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void e_to_the_x_0() {
-    assertEquals(Euler.exp(0), 1);
+    assertEquals(1, Euler.exp(0), epsilon);
   }
 
   @Test
   public void e_to_the_x_pos_int() {
-    assertEquals(Euler.exp(10), 22026.46579);
+    assertEquals(22026.465794806718, Euler.exp(10), epsilon);
   }
 
   @Test
   public void e_to_the_x_neg_int() {
-    assertEquals(Euler.exp(-5), 0.006737946);
+    assertEquals(0.006737946999085467, Euler.exp(-5), epsilon);
   }
 
   @Test
   public void e_to_the_x_pos_double() {
-    assertEquals(Euler.exp(3.5), 33.11545196);
+    assertEquals(33.115451958692, Euler.exp(3.5), epsilon);
   }
 
   @Test
   public void e_to_the_x_neg_double() {
-    assertEquals(Euler.exp(-7.3), 0.000675538);
+    assertEquals(0.000675538775, Euler.exp(-7.3), epsilon);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -142,22 +147,22 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void ten_to_the_x_pos_int() {
-    assertEquals(Calculator.ten_to_the_x(5), 100000);
+    assertEquals(100000, Calculator.ten_to_the_x(5));
   }
 
   @Test
   public void ten_to_the_x_neg_int() {
-    assertEquals(Calculator.ten_to_the_x(-3), 0.001);
+    assertEquals(0.001, Calculator.ten_to_the_x(-3), epsilon);
   }
 
   @Test
   public void ten_to_the_x_pos_double() {
-    assertEquals(Calculator.ten_to_the_x(5.417735), 261658.59194);
+    assertEquals(261658.5919399553, Calculator.ten_to_the_x(5.417735), 0.000000001);
   }
 
   @Test
   public void ten_to_the_x_neg_double() {
-    assertEquals(Calculator.ten_to_the_x(-2.789123456), 0.00162508673);
+    assertEquals(0.001625086730018, Calculator.ten_to_the_x(-2.789123456), epsilon);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -166,25 +171,25 @@ class TestCalculator {
   @Test
   public void mean_single_int() {
     var list = makeArrayList(1);
-    assertEquals(Calculator.mean(list), 1);
+    assertEquals(1, Calculator.mean(list));
   }
 
   @Test
   public void mean_mulitiple_ints() {
     var list = makeArrayList(1, 2, 3, 4, 5);
-    assertEquals(Calculator.mean(list), 3);
+    assertEquals(3, Calculator.mean(list));
   }
 
   @Test
   public void mean_single_double() {
     var list = makeArrayList(1.5);
-    assertEquals(Calculator.mean(list), 1.5);
+    assertEquals(1.5, Calculator.mean(list));
   }
 
   @Test
   public void mean_multiple_doubles() {
     var list = makeArrayList(1.5, 2.5, 3.5, 4.5, 5.5);
-    assertEquals(Calculator.mean(list), 3.5);
+    assertEquals(3.5, Calculator.mean(list));
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -194,28 +199,28 @@ class TestCalculator {
   public void variance_single_int() {
     var list = makeArrayList(1);
     var mean = Calculator.mean(list);
-    assertEquals(Calculator.variance(mean, list), 0);
+    assertEquals(0, Calculator.variance(mean, list));
   }
 
   @Test
   public void variance_mulitiple_ints() {
     var list = makeArrayList(1, 2, 3, 4, 5);
     var mean = Calculator.mean(list);
-    assertEquals(Calculator.variance(mean, list), 2);
+    assertEquals(2, Calculator.variance(mean, list));
   }
 
   @Test
   public void variance_single_double() {
     var list = makeArrayList(1.5);
     var mean = Calculator.mean(list);
-    assertEquals(Calculator.variance(mean, list), 0);
+    assertEquals(0, Calculator.variance(mean, list));
   }
 
   @Test
   public void variance_multiple_doubles() {
     var list = makeArrayList(1.5, 2.5, 3.5, 4.5, 5.5);
     var mean = Calculator.mean(list);
-    assertEquals(Calculator.variance(mean, list), 2);
+    assertEquals(2, Calculator.variance(mean, list));
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -223,22 +228,22 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void absolute_value_pos_int() {
-    assertEquals(Calculator.absolute_value(4), 4);
+    assertEquals(4, Calculator.absolute_value(4));
   }
 
   @Test
   public void absolute_value_neg_int() {
-    assertEquals(Calculator.absolute_value(-4), 4);
+    assertEquals(4, Calculator.absolute_value(-4));
   }
 
   @Test
   public void absolute_value_pos_double() {
-    assertEquals(Calculator.absolute_value(2.5), 2.5);
+    assertEquals(2.5, Calculator.absolute_value(2.5));
   }
 
   @Test
   public void absolute_value_neg_double() {
-    assertEquals(Calculator.absolute_value(-2.5), 2.5);
+    assertEquals(2.5, Calculator.absolute_value(-2.5));
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -246,17 +251,17 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void square_root_exact() {
-    assertEquals(Calculator.square_root(4), 2);
+    assertEquals(2, Calculator.square_root(4));
   }
 
   @Test
   public void square_root_double() {
-    assertEquals(Calculator.square_root(2.5), 1.5811388300841935);
+    assertEquals(1.581138830084, Calculator.square_root(2.5), epsilon);
   }
 
   @Test
   public void square_root_inexact() {
-    assertEquals(Calculator.square_root(2), 1.4142135623746899);
+    assertEquals(1.414213562373, Calculator.square_root(2), epsilon * 10);
   }
 
   @Test
