@@ -11,7 +11,7 @@ import eternity.Errors.SquareRootOfNegativeException;
 class TestCalculator {
 
   // Supporting up to 1 x 10^-12 precision error
-  public static final double epsilon = 0.000001;
+  public static final double epsilon = 0.000000000001;
 
   ///////////////////////////////////////////////////////////////////////////////
   // Sin(x)
@@ -23,22 +23,22 @@ class TestCalculator {
 
   @Test
   public void sin_pos_int() {
-    assertEquals(0.17364817766693034, Calculator.sin(10), epsilon);
+    assertEquals(0.17364817766693034, Calculator.sin(10), 0.000001);
   }
 
   @Test
   public void sin_neg_int() {
-    assertEquals(-0.17364817766693034, Calculator.sin(-10), epsilon);
+    assertEquals(-0.17364817766693034, Calculator.sin(-10), 0.000001);
   }
 
   @Test
   public void sin_pos_double() {
-    assertEquals(0.18223552549214745, Calculator.sin(10.5), epsilon);
+    assertEquals(0.18223552549214745, Calculator.sin(10.5), 0.000001);
   }
 
   @Test
   public void sin_neg_double() {
-    assertEquals(-0.18223552549214745, Calculator.sin(-10.5), epsilon);
+    assertEquals(-0.18223552549214745, Calculator.sin(-10.5), 0.000001);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
