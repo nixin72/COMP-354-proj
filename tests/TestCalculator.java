@@ -23,22 +23,22 @@ class TestCalculator {
 
   @Test
   public void sin_pos_int() {
-    assertEquals(0.17364817766693034, Calculator.sin(10), epsilon);
+    assertEquals(0.17364817766693034, Calculator.sin(10), 0.000001);
   }
 
   @Test
   public void sin_neg_int() {
-    assertEquals(-0.17364817766693034, Calculator.sin(-10), epsilon);
+    assertEquals(-0.17364817766693034, Calculator.sin(-10), 0.000001);
   }
 
   @Test
   public void sin_pos_double() {
-    assertEquals(-0.8796957599716700, Calculator.sin(10.5), epsilon);
+    assertEquals(0.18223552549214745, Calculator.sin(10.5), 0.000001);
   }
 
   @Test
   public void sin_neg_double() {
-    assertEquals(0.8796957599716700, Calculator.sin(-10.5), epsilon);
+    assertEquals(-0.18223552549214745, Calculator.sin(-10.5), 0.000001);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -46,33 +46,48 @@ class TestCalculator {
   ///////////////////////////////////////////////////////////////////////////////
   @Test
   public void exponential_pos_int_x_pos_int_y() {
-    assertEquals(4, Calculator.x_to_the_y(2, 2));
+    assertEquals(4, Calculator.power(2, 2));
   }
 
   @Test
   public void exponential_neg_int_x_pos_int_y() {
-    assertEquals(4, Calculator.x_to_the_y(-2, 2));
+    assertEquals(4, Calculator.power(-2, 2));
   }
 
   @Test
   public void exponential_pos_double_x_pos_int_y() {
-    assertEquals(6.25, Calculator.x_to_the_y(2.5, 2));
+    assertEquals(6.25, Calculator.power(2.5, 2));
   }
 
   @Test
   public void exponential_neg_double_x_pos_int_y() {
-    assertEquals(6.25, Calculator.x_to_the_y(-2.5, 2));
+    assertEquals(6.25, Calculator.power(-2.5, 2));
   }
 
   @Test
   public void exponential_pos_double_x_pos_double_y() {
-    assertEquals(9.88211768802618, Calculator.x_to_the_y(2.5, 2.5), epsilon);
+    assertEquals(9.88211768802618, Calculator.power(2.5, 2.5), epsilon);
   }
 
   @Test
   public void exponential_neg_double_x_pos_double_y() {
-    // TODO: This should yield a math error or an imaginary number
-    assertEquals(Calculator.x_to_the_y(-2.5, 2.5), 0.101192885);
+    assertEquals(-3.952847075210474, Calculator.power(-2.5, 1.5), epsilon);
+  }
+
+  @Test
+  public void exponential_neg_double_x_neg_odd_double_y() {
+    try {
+      Calculator.power(-2.5, -1.5);
+    } catch (ArithmeticException e) {
+      assertTrue(true);
+    } catch (Exception e) {
+      assertFalse(false);
+    }
+  }
+
+  @Test
+  public void exponential_neg_double_x_neg_even_double_y() {
+    assertEquals(9.88211768802618, Calculator.power(-2.5, -2.5), epsilon);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
