@@ -1,4 +1,4 @@
-package eternity.Errors;
+package Errors;
 
 public class NegativePowerOfZeroException extends RuntimeException {
 

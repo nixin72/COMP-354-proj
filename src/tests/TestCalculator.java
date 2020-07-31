@@ -2,11 +2,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import eternity.Errors.DivideByZeroException;
-import eternity.Euler;
+import Errors.DivideByZeroException;
 import org.junit.jupiter.api.Test;
-import eternity.Calculator;
-import eternity.Errors.SquareRootOfNegativeException;
+import Errors.SquareRootOfNegativeException;
 
 class TestCalculator {
 
