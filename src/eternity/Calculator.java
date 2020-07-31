@@ -1,10 +1,8 @@
-package eternity;
-
 import java.util.ArrayList;
 import java.util.function.Function;
 
-import eternity.Errors.SquareRootOfNegativeException;
-import eternity.Errors.DivideByZeroException;
+import Errors.SquareRootOfNegativeException;
+import Errors.DivideByZeroException;
 
 public class Calculator {
   private static double PI = 0;
