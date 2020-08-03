@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
+import java.awt.event.*;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
@@ -153,11 +151,13 @@ public class CalculatorApp extends JFrame implements ActionListener {
         txaFormula.setRows(3);
         txaFormula.setLineWrap(true);
         txaFormula.setWrapStyleWord(true);  // nicer
+        txaFormula.setEditable(false);
         JScrollPane scTextFormula = new JScrollPane(txaFormula, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         txfResult = new JTextField();
         txfResult.setFont(new Font("Times New Roman (Headings CS)", Font.BOLD, 35));
         txfResult.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        txfResult.setEditable(false);
         txfResult.setText("0.0");
 
         jpScreen.add(scTextFormula);
