@@ -46,7 +46,7 @@ public class Calculator {
     double sinx = 0;
     for (int i = 1, power = 1; i <= 10; i++, power += 2) {
       double term = 0;
-      int powerFactorial = factorial(power);
+      int powerFactorial = (int) factorial(power);
       double powerOfx = Calculator.power(theta, power);
       if (Calculator.mod(i, 2) == 0) {
         term = -powerOfx / powerFactorial;
@@ -83,76 +83,6 @@ public class Calculator {
     }
 
     return sum;
-  }
-
-  public static double x_to_the_y(double x, double y) {
-    if (x == 0) {
-      if (y > 0) {
-        return (0);
-      } else {
-        return Double.NEGATIVE_INFINITY;
-      }
-    }
-    if (x == 1) {
-      return (1);
-    }
-
-    if (x == -1) {
-      if (y != (int) y) {
-        return (-1);
-      } else {
-        if (Calculator.CheckEvenOdd((int) y)) {
-          return (1);
-        } else {
-          return (-1);
-        }
-      }
-    }
-
-    if (y == 0) {
-      return (1);
-    }
-
-    if (y == 1) {
-      return (x);
-    }
-
-    if (y < 1 && (y == (int) y)) {
-      double result = x;
-      while (y-- > 1) {
-        result *= x;
-      }
-    }
-
-    if (y == (int) y) {
-      if (y < 0) {
-        y *= -1;
-        double result = x;
-        while (y-- > 1) {
-          result *= x;
-        }
-        result = 1 / result;
-        return (result);
-      } else {
-        double result = x;
-        while (y-- > 1) {
-          result *= x;
-        }
-        return (result);
-      }
-    }
-
-    // if we reach this point y is not an int, no need to test for it.
-    // find the factor of 10 that will turn y into an integer
-
-    if (y > 1) {
-      // TODO decimal power
-
-    } else {
-      // if we reach this point we know that y is negative
-      // TODO decimal power
-    }
-    return x;
   }
 
   public static boolean CheckEvenOdd(int number) {
@@ -372,7 +302,7 @@ public class Calculator {
     return ret;
   }
 
-  public static int factorial(int x) {
+  public static double factorial(int x) {
     if (x == 0) {
       return 1;
     }
