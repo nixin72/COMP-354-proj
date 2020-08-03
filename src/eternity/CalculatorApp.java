@@ -122,7 +122,7 @@ public class CalculatorApp extends JFrame implements ActionListener {
     public CalculatorApp(EvaluateMathExp listenerEvaluateCommand) {
 
         super("Calculator");
-        this.setSize(700, 450);
+        this.setSize(700, 500);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -155,6 +155,9 @@ public class CalculatorApp extends JFrame implements ActionListener {
         jpMain.add(jpLable, BorderLayout.NORTH);
 
         JLabel lbTitle = new JLabel("Eternity Calculator");
+        Font lbFont = new Font("Times New Roman (Headings CS)", Font.BOLD, 30);
+        lbTitle.setForeground(BASICFNBTNCOLOR);
+        lbTitle.setFont(lbFont);
         jpLable.add(lbTitle);
 
         JPanel jpComponents = new JPanel();
